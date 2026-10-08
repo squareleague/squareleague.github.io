@@ -4,42 +4,229 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Square League</title>
-<meta name="description" content="Square League: build your own 28x34 arena, drop in characters and weapons, press Play and record Full HD battle videos on your phone.">
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="Square League: square-fighter races, battles, mazes and tournaments on YouTube, plus the Square League arena builder for iOS and Android.">
+<meta property="og:title" content="Square League">
+<meta property="og:description" content="Build the arena. Let the squares fight it out!">
+<meta property="og:url" content="https://squareleague.github.io/">
+<meta name="theme-color" content="#FFD84D">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
-<header><div class="wrap">
-  <a class="brand" href="./">SQUARE <span>LEAGUE</span></a>
-  <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:huaphongit@gmail.com">Contact</a></nav>
-</div></header>
 
-<main><div class="wrap">
-  <section class="hero">
-    <h1>Square League</h1>
-    <p>Build your own arena. Drop in characters, weapons and traps. Press Play, watch the squares fight it out, and record the whole match in Full HD.</p>
-    <div class="btns">
-      <a class="btn primary" href="#">Google Play (coming soon)</a>
-      <a class="btn" href="#">App Store (coming soon)</a>
+<header class="site-header">
+  <div class="bar box">
+    <a class="brand" href="#top" aria-label="Square League home">
+      <span class="logo" aria-hidden="true"><i></i><i></i></span>
+      <span class="wordmark">Square<b>League</b></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="link" href="#channels">Channels</a>
+      <a class="link" href="#apps">Apps</a>
+      <a class="link" href="#videos">Videos</a>
+      <a class="link" href="mailto:huaphongit@gmail.com">Contact</a>
+      <a class="btn btn--red" href="https://buymeacoffee.com/squareleague" target="_blank" rel="noopener">
+        <svg class="icon" width="22" height="22" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 0h1v2H4zM7 0h1v2H7z" fill="#1E1A1A"/><path d="M1 3h9v1h2v4h-2v1H9v1H8v1H3v-1H2V9H1z" fill="#1E1A1A"/><path d="M2 4h7v4H8v1H7v1H4V9H3V8H2z" fill="#fff"/><path d="M10 5h1v2h-1z" fill="#FF8C7A"/></svg>Buy me a coffee</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero wrap">
+    <span class="deco" aria-hidden="true" style="top:40px;left:46%;width:26px;height:26px;background:#fff;transform:rotate(18deg)"></span>
+    <span class="deco" aria-hidden="true" style="bottom:36px;left:8%;width:18px;height:18px;background:var(--yellow);transform:rotate(-14deg)"></span>
+    <span class="deco" aria-hidden="true" style="top:120px;right:2%;width:20px;height:20px;background:var(--red);transform:rotate(30deg)"></span>
+
+    <div class="copy">
+      <span class="tag tag--sq" style="background:var(--butter)">Season 1 · Now building</span>
+      <h1>Build the arena.<br><em>Let the squares</em><br>fight it out!</h1>
+      <p>Square League turns little square fighters into races, battles, mazes and tournaments. Watch every match on YouTube, and build your own arena with the Square League app.</p>
+      <div class="ctas">
+        <a class="btn btn--yellow" href="#videos">
+          <svg class="icon" width="20" height="20" viewBox="0 0 8 8" aria-hidden="true"><path d="M2 0h1v1h1v1h1v1h1v2H5v1H4v1H3v1H2z" fill="#1E1A1A"/></svg>Watch battles</a>
+        <a class="btn" href="#apps">Get the app</a>
+      </div>
+      <div class="pills">
+        <a class="pill" href="https://www.youtube.com/@squareleague2d" target="_blank" rel="noopener"><span style="background:var(--red)">YT</span><b data-subs>209K</b>&nbsp;subscribers</a>
+      </div>
+    </div>
+
+    <div class="arena-wrap">
+      <div class="arena-card box" style="box-shadow:9px 9px 0 var(--ink)">
+        <div class="hud">
+          <span class="tag" style="background:var(--butter)">Round 3</span>
+          <span class="time">00:42</span>
+          <span class="tag" style="background:var(--red)"><span class="rec-dot"></span>Rec</span>
+        </div>
+        <div class="arena" role="img" aria-label="Four square fighters battling in an arena with walls, a crusher and spikes">
+          <span class="wall" style="left:40%;top:18%;width:12%;height:34%"></span>
+          <span class="wall" style="left:66%;top:70%;width:22%;height:10%"></span>
+          <span class="crusher"><i></i></span>
+          <span class="spikes"><i></i><i></i><i></i></span>
+          <span class="shot"></span>
+          <span class="shot" style="animation-delay:-.6s"></span>
+          <div class="chr chr--green look-br"><div class="body"><span class="eye"></span><span class="eye"></span></div></div>
+          <div class="chr chr--red look-tl"><div class="body"><div class="hp"><i></i></div><span class="eye"></span><span class="eye"></span></div></div>
+          <div class="chr chr--blue look-tr"><div class="body"><div class="hp"><i></i></div><span class="eye"></span><span class="eye"></span></div></div>
+          <div class="chr chr--yellow look-bl"><div class="body"><span class="eye"></span><span class="eye"></span></div></div>
+        </div>
+        <div class="speeds" aria-hidden="true"><span>0.5×</span><span class="on">1×</span><span>2×</span><span>4×</span></div>
+      </div>
     </div>
   </section>
 
-  <div class="card">
-    <h3>What you can do</h3>
-    <ul>
-      <li>Design a 28x34 map with walls, floors, crushers, gates, spikes, boulders and sliders.</li>
-      <li>Place characters and weapons: knife, pistol, rifle, bow, shotgun, minigun.</li>
-      <li>Play the match at 0.5x to 4x speed, or hit Rec to save a 1080x1920 video straight to your gallery.</li>
-      <li>Share your videos anywhere.</li>
-    </ul>
-  </div>
+  <div class="ticker" aria-hidden="true"><div>
+    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
+    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
+    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
+    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
+  </div></div>
 
-  <div class="card">
-    <h3>Support</h3>
-    <p>Questions, bug reports or data requests: <a href="mailto:huaphongit@gmail.com">huaphongit@gmail.com</a></p>
-    <p><a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a></p>
-  </div>
-</div></main>
+  <!-- CHANNELS -->
+  <section id="channels" class="block wrap">
+    <div class="head head--center">
+      <span class="tag" style="background:var(--red)">Stage 01 · Channels</span>
+      <h2>Join the League</h2>
+      <p>New races, battles and tournaments every week. More platforms are on the way.</p>
+    </div>
+    <div class="channels">
+      <article class="ch box">
+        <div class="ch-top" style="background:var(--red)">
+          <span class="ch-mono">YT</span>
+          <div><div class="ch-name">YouTube</div><div class="ch-handle">@squareleague2d</div></div>
+        </div>
+        <div class="ch-body">
+          <p>Sprunki races, battles, mazes and tournaments.</p>
+          <div class="stats">
+            <div><strong data-subs>209K</strong>subscribers</div>
+            <div><strong data-count>187</strong>videos</div>
+          </div>
+          <a class="btn btn--yellow btn--block" href="https://www.youtube.com/@squareleague2d?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a>
+        </div>
+      </article>
+      <article class="ch box soon">
+        <div class="ch-top"><span class="ch-mono">TT</span><div><div class="ch-name">TikTok</div><div class="ch-handle">Coming soon</div></div></div>
+        <div class="ch-body"><p>Short vertical clips of the wildest fights.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
+      </article>
+      <article class="ch box soon">
+        <div class="ch-top"><span class="ch-mono">FB</span><div><div class="ch-name">Facebook</div><div class="ch-handle">Coming soon</div></div></div>
+        <div class="ch-body"><p>News, community maps and player highlights.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
+      </article>
+      <article class="ch box soon">
+        <div class="ch-top"><span class="ch-mono">IG</span><div><div class="ch-name">Instagram</div><div class="ch-handle">Coming soon</div></div></div>
+        <div class="ch-body"><p>Battle stills, Reels and behind-the-scenes builds.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
+      </article>
+      <article class="ch box soon">
+        <div class="ch-top"><span class="ch-mono">X</span><div><div class="ch-name">X</div><div class="ch-handle">Coming soon</div></div></div>
+        <div class="ch-body"><p>Patch notes, dev updates and quick clips.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
+      </article>
+    </div>
+  </section>
 
-<footer><div class="wrap">&copy; 2026 Square League. Published on Google Play by Square League and on the App Store by Hua Toan Phong.</div></footer>
+  <!-- APPS -->
+  <section id="apps" class="block wrap">
+    <div class="apps-panel box">
+      <div class="head">
+        <div>
+          <span class="tag">Stage 02 · Apps</span>
+          <h2>Pick your game</h2>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Store">
+          <button type="button" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">App Store<span class="count">1</span></button>
+          <button type="button" role="tab" id="tab-android" aria-controls="panel-android" aria-selected="false" tabindex="-1">Google Play<span class="count">1</span></button>
+        </div>
+      </div>
+      <div class="apps" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios">
+        <article class="app box">
+          <div class="app-art"><span class="tag">Coming soon</span><span class="logo" aria-hidden="true"><i></i><i></i></span></div>
+          <div class="app-body">
+            <div><h3>Square League</h3><div class="cat">Simulation · Arena builder</div></div>
+            <p>Build a 28×34 arena, drop in fighters, weapons and traps, then record the battle in Full HD.</p>
+            <span class="btn btn--block" aria-disabled="true">Coming soon to the App Store</span>
+          </div>
+        </article>
+      </div>
+      <div class="apps" role="tabpanel" id="panel-android" aria-labelledby="tab-android" hidden>
+        <article class="app box">
+          <div class="app-art"><span class="tag">Coming soon</span><span class="logo" aria-hidden="true"><i></i><i></i></span></div>
+          <div class="app-body">
+            <div><h3>Square League</h3><div class="cat">Simulation · Arena builder</div></div>
+            <p>Build a 28×34 arena, drop in fighters, weapons and traps, then record the battle in Full HD.</p>
+            <span class="btn btn--block" aria-disabled="true">Coming soon to Google Play</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos" class="block wrap">
+    <div class="head">
+      <div>
+        <span class="tag" style="background:var(--yellow)">Stage 03 · YouTube</span>
+        <h2>Latest battles</h2>
+      </div>
+      <a class="btn" href="https://www.youtube.com/@squareleague2d/videos" target="_blank" rel="noopener">All videos on YouTube →</a>
+    </div>
+    <div id="featured"></div>
+    <div class="filters" id="filters" aria-label="Filter videos"></div>
+    <div class="videos" id="video-grid"></div>
+    <noscript><p class="empty">Watch all our videos on <a href="https://www.youtube.com/@squareleague2d/videos">YouTube</a>.</p></noscript>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support" class="block wrap" style="padding-bottom:24px">
+    <div class="support box">
+      <span class="deco" aria-hidden="true" style="top:-14px;right:60px;width:24px;height:24px;background:var(--yellow);transform:rotate(16deg)"></span>
+      <div class="cup" aria-hidden="true"><div>
+        <svg class="icon" width="128" height="128" viewBox="0 0 12 12"><path d="M4 0h1v2H4zM7 0h1v2H7z" fill="#1E1A1A"/><path d="M1 3h9v1h2v4h-2v1H9v1H8v1H3v-1H2V9H1z" fill="#1E1A1A"/><path d="M2 4h7v4H8v1H7v1H4V9H3V8H2z" fill="#FF8C7A"/><path d="M10 5h1v2h-1z" fill="#FFE88A"/><path d="M4 5h1v2H4zM6 5h1v2H6z" fill="#1E1A1A"/></svg>
+      </div></div>
+      <div class="txt">
+        <span class="tag" style="background:var(--red)">Bonus stage · Support</span>
+        <h2>Enjoying the battles?<br>Fuel the next one!</h2>
+        <p>Square League is an indie project. Every coffee helps fund new maps, new fighters and more videos.</p>
+        <a class="btn btn--red" href="https://buymeacoffee.com/squareleague" target="_blank" rel="noopener">
+          <svg class="icon" width="24" height="24" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 0h1v2H4zM7 0h1v2H7z" fill="#1E1A1A"/><path d="M1 3h9v1h2v4h-2v1H9v1H8v1H3v-1H2V9H1z" fill="#1E1A1A"/><path d="M2 4h7v4H8v1H7v1H4V9H3V8H2z" fill="#fff"/><path d="M10 5h1v2h-1z" fill="#FF8C7A"/></svg>Buy me a coffee</a>
+        <div class="url">buymeacoffee.com/squareleague</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div style="flex:1 1 320px">
+      <div class="brand"><span class="logo" aria-hidden="true"><i></i><i></i></span><span class="wordmark">Square<b>League</b></span></div>
+      <p>&copy; 2026 Square League. Published on Google Play by Square League and on the App Store by Hua Toan Phong.</p>
+    </div>
+    <div class="cols">
+      <div>
+        <span class="px">Follow</span>
+        <a href="https://www.youtube.com/@squareleague2d" target="_blank" rel="noopener">YouTube</a>
+        <span class="soon">TikTok · soon</span>
+        <span class="soon">Facebook · soon</span>
+        <span class="soon">Instagram · soon</span>
+        <span class="soon">X · soon</span>
+      </div>
+      <div>
+        <span class="px">Legal</span>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="app-ads.txt">app-ads.txt</a>
+      </div>
+      <div>
+        <span class="px">Contact</span>
+        <a href="mailto:huaphongit@gmail.com">huaphongit@gmail.com</a>
+        <a href="https://buymeacoffee.com/squareleague" target="_blank" rel="noopener" style="color:var(--yellow)">Buy me a coffee</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js" defer></script>
 </body>
 </html>
