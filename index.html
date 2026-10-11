@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Square League</title>
 <meta name="description" content="Square League: square-fighter races, battles, mazes and tournaments on YouTube, plus the Square League arena builder for iOS and Android.">
 <meta property="og:title" content="Square League">
@@ -13,220 +13,203 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<style>
+/* One screen: brand bar, then copy + button rows on the left and the live arena on the right, then a one-line footer. */
+:root{
+  --bg:#FFF8DC;--grid:#F7E6A8;--ink:#1E1A1A;--text:#4A403A;--muted:#6B6058;
+  --yellow:#FFD84D;--butter:#FFE88A;--cream:#FFF3C4;--floor:#FFF4C2;--floor2:#FFE9A0;
+  --red:#FF8C7A;--red-deep:#D93A2B;--blush:#FFD4CC;--white:#FFFFFF;
+  --c-red:#FF9C94;--c-blue:#A9BCFF;--c-yellow:#FFE680;--c-green:#A6E3B8;
+  --pixel:'Jersey 10',ui-monospace,monospace;--sans:'Nunito',system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;font-family:var(--sans);color:var(--ink);background-color:var(--bg);
+  background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);
+  background-size:24px 24px;overflow-x:hidden;display:flex;flex-direction:column;min-height:100svh}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--red-deep);outline-offset:3px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-inline:24px}
+.icon{shape-rendering:crispEdges;flex-shrink:0}
+
+/* logo */
+.logo{position:relative;display:block;flex-shrink:0;width:44px;height:44px;border:3px solid var(--ink);
+  background:linear-gradient(#FFF04D 0 20%,#FFC53D 20% 40%,#FF8A2D 40% 60%,#FF3B22 60% 80%,#B00000 80%)}
+.logo i{position:absolute;top:24.5%;width:39.4%;height:51%;background:var(--ink)}
+.logo i:first-child{left:7.4%}.logo i:last-child{left:53.2%}
+.logo i::before,.logo i::after{content:"";position:absolute;left:8.1%;background:var(--white)}
+.logo i::before{top:6.25%;width:28.1%;height:87.1%}
+.logo i::after{top:60.4%;width:83.2%;height:32.9%}
+.wordmark{font-family:var(--pixel);font-size:30px;line-height:1}
+.wordmark b{font-weight:400;color:var(--red-deep)}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:16px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--pixel);font-size:19px;line-height:1;border:3px solid var(--ink);padding:6px 12px;background:var(--butter)}
+.tag::before{content:"";width:9px;height:9px;background:var(--ink)}
+
+/* stage */
+.stage{flex:1;display:flex;flex-wrap:wrap;align-items:center;gap:40px 56px;padding-block:20px}
+.copy{flex:999 1 460px;min-width:0;display:flex;flex-direction:column;gap:18px}
+h1{font-family:var(--pixel);font-weight:400;font-size:clamp(50px,5.6vw,72px);line-height:.92;margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--red-deep)}
+.lede{margin:0;font-size:18px;line-height:1.55;color:var(--text);font-weight:500;max-width:46ch}
+
+/* button rows */
+.rows{display:grid;gap:14px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.row-label{font-family:var(--pixel);font-size:18px;color:var(--muted);width:100%;letter-spacing:.04em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--pixel);font-size:22px;line-height:1;text-decoration:none;color:var(--ink);
+  background:var(--white);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:7px 14px 7px 7px;min-height:46px;
+  transition:transform .08s,box-shadow .08s}
+a.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+a.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.mono{width:28px;height:28px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--white)}
+.btn--yt{background:var(--red)}
+.btn--coffee{background:var(--yellow);padding-left:10px}
+.btn.soon{background:var(--cream);color:var(--muted);border-style:dashed;box-shadow:none;cursor:default;font-size:20px;min-height:42px;padding:5px 8px 5px 12px;gap:8px}
+.btn.soon small{font-size:14px;background:var(--blush);color:var(--ink);padding:2px 5px}
+
+/* arena card */
+.arena-wrap{flex:1 1 380px;min-width:0;max-width:520px;margin-inline:auto}
+.arena-card{background:var(--white);border:3px solid var(--ink);box-shadow:9px 9px 0 var(--ink);padding:14px}
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-family:var(--pixel)}
+.hud .chip{display:inline-flex;align-items:center;gap:8px;font-size:18px;line-height:1;border:3px solid var(--ink);padding:5px 11px}
+.hud .time{font-size:32px;font-variant-numeric:tabular-nums}
+.rec-dot{width:10px;height:10px;background:var(--ink);animation:blink 1s steps(1) infinite}
+.arena{position:relative;aspect-ratio:4/3;max-width:100%;border:3px solid var(--ink);overflow:hidden;background-color:var(--floor);
+  background-image:repeating-conic-gradient(var(--floor2) 0 25%,transparent 0 50%);background-size:16px 16px}
+.wall{position:absolute;background:var(--blush);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.crusher{position:absolute;left:8%;top:0;width:16%;height:30%;overflow:hidden}
+.crusher i{position:absolute;inset:0;border:3px solid var(--ink);border-top:0;background-image:repeating-conic-gradient(var(--ink) 0 25%,var(--yellow) 0 50%);background-size:8px 8px;animation:crush 2.4s steps(8) infinite}
+.spikes{position:absolute;left:70%;top:10%;display:flex;gap:2px}
+.spikes i{width:16px;height:16px;background:
+  linear-gradient(var(--ink),var(--ink)) 6px 0/4px 4px no-repeat,linear-gradient(var(--ink),var(--ink)) 4px 4px/8px 4px no-repeat,
+  linear-gradient(var(--ink),var(--ink)) 2px 8px/12px 4px no-repeat,linear-gradient(var(--ink),var(--ink)) 0 12px/16px 4px no-repeat}
+.shot{position:absolute;left:26%;top:64%;width:14px;height:6px;background:var(--ink);animation:shot 1.2s steps(12) infinite}
+
+/* square fighters */
+.chr{position:absolute;aspect-ratio:1}
+.chr .body{position:absolute;inset:0;border:4px solid var(--ink);box-shadow:4px 4px 0 var(--ink);animation:hop .5s steps(2) infinite}
+.eye{position:absolute;top:26.4%;width:36.8%;height:47%;background:var(--ink)}
+.eye:nth-of-type(1){left:9.4%}.eye:nth-of-type(2){left:53.8%}
+.eye::before,.eye::after{content:"";position:absolute;background:var(--white)}
+.eye::before{width:22%;height:76%}.eye::after{width:76%;height:18%}
+.look-tl .eye::before,.look-tl .eye::after{left:11%;top:9%}
+.look-tr .eye::before,.look-tr .eye::after{right:11%;top:9%}
+.look-bl .eye::before,.look-bl .eye::after{left:11%;bottom:9%}
+.look-br .eye::before,.look-br .eye::after{right:11%;bottom:9%}
+.chr--red .body{background:var(--c-red)}.chr--blue .body{background:var(--c-blue)}
+.chr--yellow .body{background:var(--c-yellow)}.chr--green .body{background:var(--c-green)}
+.hp{position:absolute;top:-22px;left:0;right:0;height:9px;background:var(--white);border:2px solid var(--ink);overflow:hidden}
+.hp i{display:block;height:100%;background:var(--ink)}
+.chr--red{left:12%;top:56%;width:14%;animation:pathA 6s steps(36) infinite}
+.chr--red .hp i{animation:hpA 8s steps(1) infinite}
+.chr--blue{left:72%;top:30%;width:14%;animation:pathB 7s steps(42) infinite}
+.chr--blue .body{animation-delay:-.2s}.chr--blue .hp i{background:var(--red-deep);animation:hpB 8s steps(1) infinite}
+.chr--yellow{left:46%;top:72%;width:12%;animation:pathC 5s steps(30) infinite}
+.chr--yellow .body{animation-delay:-.35s}
+.chr--green{left:24%;top:14%;width:12%;animation:pathD 6.6s steps(40) infinite}
+.chr--green .body{animation-delay:-.1s}
+
+@keyframes pathA{0%,100%{transform:translate(0,0)}25%{transform:translate(50px,-40px)}50%{transform:translate(80px,6px)}75%{transform:translate(24px,24px)}}
+@keyframes pathB{0%,100%{transform:translate(0,0)}30%{transform:translate(-60px,50px)}60%{transform:translate(-20px,90px)}80%{transform:translate(10px,30px)}}
+@keyframes pathC{0%,100%{transform:translate(0,0)}35%{transform:translate(70px,-20px)}70%{transform:translate(-50px,-10px)}}
+@keyframes pathD{0%,100%{transform:translate(0,0)}40%{transform:translate(60px,30px)}70%{transform:translate(110px,-6px)}}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes shot{0%{transform:translate(0,0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translate(260px,-90px);opacity:0}}
+@keyframes crush{0%,100%{transform:translateY(-100%)}40%,55%{transform:translateY(0)}}
+@keyframes hpA{0%{width:90%}25%{width:75%}50%{width:60%}75%{width:72%}}
+@keyframes hpB{0%{width:70%}25%{width:52%}50%{width:38%}75%{width:28%}}
+@keyframes blink{0%{opacity:1}50%{opacity:.15}}
+
+/* footer */
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 20px;padding-block:14px 22px;font-size:14px;font-weight:700;color:var(--muted)}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+.foot a{color:var(--ink);text-decoration:none}
+.foot a:hover{color:var(--red-deep);text-decoration:underline}
+
+@media (max-width:640px){
+  .top .tag{display:none}
+  .stage{padding-block:24px;gap:36px}
+  .lede{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .chr--red .hp i{width:80%}.chr--blue .hp i{width:45%}
+}
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="bar box">
-    <a class="brand" href="#top" aria-label="Square League home">
-      <span class="logo" aria-hidden="true"><i></i><i></i></span>
-      <span class="wordmark">Square<b>League</b></span>
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a class="link" href="#channels">Channels</a>
-      <a class="link" href="#apps">Apps</a>
-      <a class="link" href="#videos">Videos</a>
-      <a class="link" href="mailto:huaphongit@gmail.com">Contact</a>
-      <a class="btn btn--red" href="https://buymeacoffee.com/squareleague" target="_blank" rel="noopener">
-        <svg class="icon" width="22" height="22" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 0h1v2H4zM7 0h1v2H7z" fill="#1E1A1A"/><path d="M1 3h9v1h2v4h-2v1H9v1H8v1H3v-1H2V9H1z" fill="#1E1A1A"/><path d="M2 4h7v4H8v1H7v1H4V9H3V8H2z" fill="#fff"/><path d="M10 5h1v2h-1z" fill="#FF8C7A"/></svg>Buy me a coffee</a>
-    </nav>
-  </div>
+<header class="top wrap">
+  <a class="brand" href="./" aria-label="Square League home">
+    <span class="logo" aria-hidden="true"><i></i><i></i></span>
+    <span class="wordmark">Square<b>League</b></span>
+  </a>
+  <span class="tag">Season 1 · Now building</span>
 </header>
 
-<main id="top">
-  <!-- HERO -->
-  <section class="hero wrap">
-    <span class="deco" aria-hidden="true" style="top:40px;left:46%;width:26px;height:26px;background:#fff;transform:rotate(18deg)"></span>
-    <span class="deco" aria-hidden="true" style="bottom:36px;left:8%;width:18px;height:18px;background:var(--yellow);transform:rotate(-14deg)"></span>
-    <span class="deco" aria-hidden="true" style="top:120px;right:2%;width:20px;height:20px;background:var(--red);transform:rotate(30deg)"></span>
+<main class="stage wrap">
+  <div class="copy">
+    <h1>Build the arena.<br><em>Let the squares</em><br>fight it out!</h1>
+    <p class="lede">Little square fighters in races, battles, mazes and tournaments. New videos every week on YouTube, and an arena builder app on the way.</p>
 
-    <div class="copy">
-      <span class="tag tag--sq" style="background:var(--butter)">Season 1 · Now building</span>
-      <h1>Build the arena.<br><em>Let the squares</em><br>fight it out!</h1>
-      <p>Square League turns little square fighters into races, battles, mazes and tournaments. Watch every match on YouTube, and build your own arena with the Square League app.</p>
-      <div class="ctas">
-        <a class="btn btn--yellow" href="#videos">
-          <svg class="icon" width="20" height="20" viewBox="0 0 8 8" aria-hidden="true"><path d="M2 0h1v1h1v1h1v1h1v2H5v1H4v1H3v1H2z" fill="#1E1A1A"/></svg>Watch battles</a>
-        <a class="btn" href="#apps">Get the app</a>
+    <div class="rows">
+      <div class="row">
+        <span class="row-label">Watch</span>
+        <a class="btn btn--yt" href="https://www.youtube.com/@squareleague2d?sub_confirmation=1" target="_blank" rel="noopener"><span class="mono">YT</span>YouTube</a>
+        <span class="btn soon" aria-disabled="true">TikTok<small>soon</small></span>
+        <span class="btn soon" aria-disabled="true">Facebook<small>soon</small></span>
+        <span class="btn soon" aria-disabled="true">Instagram<small>soon</small></span>
+        <span class="btn soon" aria-disabled="true">X<small>soon</small></span>
       </div>
-      <div class="pills">
-        <a class="pill" href="https://www.youtube.com/@squareleague2d" target="_blank" rel="noopener"><span style="background:var(--red)">YT</span><b data-subs>209K</b>&nbsp;subscribers</a>
+      <div class="row">
+        <span class="row-label">Get the app</span>
+        <span class="btn soon" aria-disabled="true">App Store<small>soon</small></span>
+        <span class="btn soon" aria-disabled="true">Google Play<small>soon</small></span>
       </div>
-    </div>
-
-    <div class="arena-wrap">
-      <div class="arena-card box" style="box-shadow:9px 9px 0 var(--ink)">
-        <div class="hud">
-          <span class="tag" style="background:var(--butter)">Round 3</span>
-          <span class="time">00:42</span>
-          <span class="tag" style="background:var(--red)"><span class="rec-dot"></span>Rec</span>
-        </div>
-        <div class="arena" role="img" aria-label="Four square fighters battling in an arena with walls, a crusher and spikes">
-          <span class="wall" style="left:40%;top:18%;width:12%;height:34%"></span>
-          <span class="wall" style="left:66%;top:70%;width:22%;height:10%"></span>
-          <span class="crusher"><i></i></span>
-          <span class="spikes"><i></i><i></i><i></i></span>
-          <span class="shot"></span>
-          <span class="shot" style="animation-delay:-.6s"></span>
-          <div class="chr chr--green look-br"><div class="body"><span class="eye"></span><span class="eye"></span></div></div>
-          <div class="chr chr--red look-tl"><div class="body"><div class="hp"><i></i></div><span class="eye"></span><span class="eye"></span></div></div>
-          <div class="chr chr--blue look-tr"><div class="body"><div class="hp"><i></i></div><span class="eye"></span><span class="eye"></span></div></div>
-          <div class="chr chr--yellow look-bl"><div class="body"><span class="eye"></span><span class="eye"></span></div></div>
-        </div>
-        <div class="speeds" aria-hidden="true"><span>0.5×</span><span class="on">1×</span><span>2×</span><span>4×</span></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="ticker" aria-hidden="true"><div>
-    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
-    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
-    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
-    <b style="color:var(--red)">■</b>Build<b style="color:var(--yellow)">■</b>Battle<b style="color:var(--butter)">■</b>Record<b style="color:#fff">■</b>Share<b style="color:var(--blush)">■</b>New videos every week
-  </div></div>
-
-  <!-- CHANNELS -->
-  <section id="channels" class="block wrap">
-    <div class="head head--center">
-      <span class="tag" style="background:var(--red)">Stage 01 · Channels</span>
-      <h2>Join the League</h2>
-      <p>New races, battles and tournaments every week. More platforms are on the way.</p>
-    </div>
-    <div class="channels">
-      <article class="ch box">
-        <div class="ch-top" style="background:var(--red)">
-          <span class="ch-mono">YT</span>
-          <div><div class="ch-name">YouTube</div><div class="ch-handle">@squareleague2d</div></div>
-        </div>
-        <div class="ch-body">
-          <p>Sprunki races, battles, mazes and tournaments.</p>
-          <div class="stats">
-            <div><strong data-subs>209K</strong>subscribers</div>
-            <div><strong data-count>187</strong>videos</div>
-          </div>
-          <a class="btn btn--yellow btn--block" href="https://www.youtube.com/@squareleague2d?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a>
-        </div>
-      </article>
-      <article class="ch box soon">
-        <div class="ch-top"><span class="ch-mono">TT</span><div><div class="ch-name">TikTok</div><div class="ch-handle">Coming soon</div></div></div>
-        <div class="ch-body"><p>Short vertical clips of the wildest fights.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
-      </article>
-      <article class="ch box soon">
-        <div class="ch-top"><span class="ch-mono">FB</span><div><div class="ch-name">Facebook</div><div class="ch-handle">Coming soon</div></div></div>
-        <div class="ch-body"><p>News, community maps and player highlights.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
-      </article>
-      <article class="ch box soon">
-        <div class="ch-top"><span class="ch-mono">IG</span><div><div class="ch-name">Instagram</div><div class="ch-handle">Coming soon</div></div></div>
-        <div class="ch-body"><p>Battle stills, Reels and behind-the-scenes builds.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
-      </article>
-      <article class="ch box soon">
-        <div class="ch-top"><span class="ch-mono">X</span><div><div class="ch-name">X</div><div class="ch-handle">Coming soon</div></div></div>
-        <div class="ch-body"><p>Patch notes, dev updates and quick clips.</p><span class="btn btn--block" aria-disabled="true">Coming soon</span></div>
-      </article>
-    </div>
-  </section>
-
-  <!-- APPS -->
-  <section id="apps" class="block wrap">
-    <div class="apps-panel box">
-      <div class="head">
-        <div>
-          <span class="tag">Stage 02 · Apps</span>
-          <h2>Pick your game</h2>
-        </div>
-        <div class="tabs" role="tablist" aria-label="Store">
-          <button type="button" role="tab" id="tab-ios" aria-controls="panel-ios" aria-selected="true">App Store<span class="count">1</span></button>
-          <button type="button" role="tab" id="tab-android" aria-controls="panel-android" aria-selected="false" tabindex="-1">Google Play<span class="count">1</span></button>
-        </div>
-      </div>
-      <div class="apps" role="tabpanel" id="panel-ios" aria-labelledby="tab-ios">
-        <article class="app box">
-          <div class="app-art"><span class="tag">Coming soon</span><span class="logo" aria-hidden="true"><i></i><i></i></span></div>
-          <div class="app-body">
-            <div><h3>Square League</h3><div class="cat">Simulation · Arena builder</div></div>
-            <p>Build a 28×34 arena, drop in fighters, weapons and traps, then record the battle in Full HD.</p>
-            <span class="btn btn--block" aria-disabled="true">Coming soon to the App Store</span>
-          </div>
-        </article>
-      </div>
-      <div class="apps" role="tabpanel" id="panel-android" aria-labelledby="tab-android" hidden>
-        <article class="app box">
-          <div class="app-art"><span class="tag">Coming soon</span><span class="logo" aria-hidden="true"><i></i><i></i></span></div>
-          <div class="app-body">
-            <div><h3>Square League</h3><div class="cat">Simulation · Arena builder</div></div>
-            <p>Build a 28×34 arena, drop in fighters, weapons and traps, then record the battle in Full HD.</p>
-            <span class="btn btn--block" aria-disabled="true">Coming soon to Google Play</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIDEOS -->
-  <section id="videos" class="block wrap">
-    <div class="head">
-      <div>
-        <span class="tag" style="background:var(--yellow)">Stage 03 · YouTube</span>
-        <h2>Latest battles</h2>
-      </div>
-      <a class="btn" href="https://www.youtube.com/@squareleague2d/videos" target="_blank" rel="noopener">All videos on YouTube →</a>
-    </div>
-    <div id="featured"></div>
-    <div class="filters" id="filters" aria-label="Filter videos"></div>
-    <div class="videos" id="video-grid"></div>
-    <noscript><p class="empty">Watch all our videos on <a href="https://www.youtube.com/@squareleague2d/videos">YouTube</a>.</p></noscript>
-  </section>
-
-  <!-- SUPPORT -->
-  <section id="support" class="block wrap" style="padding-bottom:24px">
-    <div class="support box">
-      <span class="deco" aria-hidden="true" style="top:-14px;right:60px;width:24px;height:24px;background:var(--yellow);transform:rotate(16deg)"></span>
-      <div class="cup" aria-hidden="true"><div>
-        <svg class="icon" width="128" height="128" viewBox="0 0 12 12"><path d="M4 0h1v2H4zM7 0h1v2H7z" fill="#1E1A1A"/><path d="M1 3h9v1h2v4h-2v1H9v1H8v1H3v-1H2V9H1z" fill="#1E1A1A"/><path d="M2 4h7v4H8v1H7v1H4V9H3V8H2z" fill="#FF8C7A"/><path d="M10 5h1v2h-1z" fill="#FFE88A"/><path d="M4 5h1v2H4zM6 5h1v2H6z" fill="#1E1A1A"/></svg>
-      </div></div>
-      <div class="txt">
-        <span class="tag" style="background:var(--red)">Bonus stage · Support</span>
-        <h2>Enjoying the battles?<br>Fuel the next one!</h2>
-        <p>Square League is an indie project. Every coffee helps fund new maps, new fighters and more videos.</p>
-        <a class="btn btn--red" href="https://buymeacoffee.com/squareleague" target="_blank" rel="noopener">
-          <svg class="icon" width="24" height="24" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 0h1v2H4zM7 0h1v2H7z" fill="#1E1A1A"/><path d="M1 3h9v1h2v4h-2v1H9v1H8v1H3v-1H2V9H1z" fill="#1E1A1A"/><path d="M2 4h7v4H8v1H7v1H4V9H3V8H2z" fill="#fff"/><path d="M10 5h1v2h-1z" fill="#FF8C7A"/></svg>Buy me a coffee</a>
-        <div class="url">buymeacoffee.com/squareleague</div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="inner">
-    <div style="flex:1 1 320px">
-      <div class="brand"><span class="logo" aria-hidden="true"><i></i><i></i></span><span class="wordmark">Square<b>League</b></span></div>
-      <p>&copy; 2026 Square League. Published on Google Play by Square League and on the App Store by Hua Toan Phong.</p>
-    </div>
-    <div class="cols">
-      <div>
-        <span class="px">Follow</span>
-        <a href="https://www.youtube.com/@squareleague2d" target="_blank" rel="noopener">YouTube</a>
-        <span class="soon">TikTok · soon</span>
-        <span class="soon">Facebook · soon</span>
-        <span class="soon">Instagram · soon</span>
-        <span class="soon">X · soon</span>
-      </div>
-      <div>
-        <span class="px">Legal</span>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="app-ads.txt">app-ads.txt</a>
-      </div>
-      <div>
-        <span class="px">Contact</span>
-        <a href="mailto:huaphongit@gmail.com">huaphongit@gmail.com</a>
-        <a href="https://buymeacoffee.com/squareleague" target="_blank" rel="noopener" style="color:var(--yellow)">Buy me a coffee</a>
+      <div class="row">
+        <span class="row-label">Support</span>
+        <a class="btn btn--coffee" href="https://buymeacoffee.com/squareleague" target="_blank" rel="noopener">
+          <svg class="icon" width="26" height="26" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 0h1v2H4zM7 0h1v2H7z" fill="#1E1A1A"/><path d="M1 3h9v1h2v4h-2v1H9v1H8v1H3v-1H2V9H1z" fill="#1E1A1A"/><path d="M2 4h7v4H8v1H7v1H4V9H3V8H2z" fill="#fff"/><path d="M10 5h1v2h-1z" fill="#FF8C7A"/></svg>Buy me a coffee</a>
       </div>
     </div>
   </div>
+
+  <div class="arena-wrap">
+    <div class="arena-card">
+      <div class="hud">
+        <span class="chip" style="background:var(--butter)">Round 3</span>
+        <span class="time">00:42</span>
+        <span class="chip" style="background:var(--red)"><span class="rec-dot"></span>Rec</span>
+      </div>
+      <div class="arena" role="img" aria-label="Four square fighters battling in an arena with walls, a crusher and spikes">
+        <span class="wall" style="left:40%;top:18%;width:12%;height:34%"></span>
+        <span class="wall" style="left:66%;top:70%;width:22%;height:10%"></span>
+        <span class="crusher"><i></i></span>
+        <span class="spikes"><i></i><i></i><i></i></span>
+        <span class="shot"></span>
+        <span class="shot" style="animation-delay:-.6s"></span>
+        <div class="chr chr--green look-br"><div class="body"><span class="eye"></span><span class="eye"></span></div></div>
+        <div class="chr chr--red look-tl"><div class="body"><div class="hp"><i></i></div><span class="eye"></span><span class="eye"></span></div></div>
+        <div class="chr chr--blue look-tr"><div class="body"><div class="hp"><i></i></div><span class="eye"></span><span class="eye"></span></div></div>
+        <div class="chr chr--yellow look-bl"><div class="body"><span class="eye"></span><span class="eye"></span></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot wrap">
+  <span>&copy; 2026 Square League</span>
+  <nav aria-label="Legal and contact">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:contact.squareleague@gmail.com">contact.squareleague@gmail.com</a>
+  </nav>
 </footer>
 
-<script src="site.js" defer></script>
 </body>
 </html>
