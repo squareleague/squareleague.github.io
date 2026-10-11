@@ -72,6 +72,17 @@ a.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
 .btn.soon{background:var(--cream);color:var(--muted);border-style:dashed;box-shadow:none;cursor:default;font-size:20px;min-height:42px;padding:5px 8px 5px 12px;gap:8px}
 .btn.soon small{font-size:14px;background:var(--blush);color:var(--ink);padding:2px 5px}
 
+/* store badges: black, logo + two-line label like the official badges, so each store reads at a glance */
+.store{position:relative;display:inline-flex;align-items:center;gap:9px;min-height:52px;padding:6px 16px 6px 11px;
+  background:#000;color:#fff;text-decoration:none;border:3px solid var(--ink);border-radius:9px;box-shadow:4px 4px 0 var(--ink);
+  font-family:var(--sans);transition:transform .08s,box-shadow .08s}
+a.store:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+a.store:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.store svg{flex-shrink:0}
+.store-text{display:flex;flex-direction:column;line-height:1.05;white-space:nowrap}
+.store-text small{font-size:11px;font-weight:700;letter-spacing:.02em}
+.store-text b{font-size:21px;font-weight:800;letter-spacing:-.01em}
+
 /* arena card */
 .arena-wrap{flex:1 1 380px;min-width:0;max-width:520px;margin-inline:auto}
 .arena-card{background:var(--white);border:3px solid var(--ink);box-shadow:9px 9px 0 var(--ink);padding:14px}
@@ -168,8 +179,15 @@ a.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
       </div>
       <div class="row">
         <span class="row-label">Get the app</span>
-        <span class="btn soon" aria-disabled="true">App Store<small>soon</small></span>
-        <span class="btn soon" aria-disabled="true">Google Play<small>soon</small></span>
+        <!-- When the apps go live: swap each <span> for <a href="store link" target="_blank" rel="noopener">, and change "Coming soon on the" / "COMING SOON ON" to "Download on the" / "GET IT ON". -->
+        <span class="store store--apple" aria-disabled="true">
+          <svg width="26" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          <span class="store-text"><small>Coming soon on the</small><b>App Store</b></span>
+        </span>
+        <span class="store store--play" aria-disabled="true">
+          <svg width="26" height="28" viewBox="0 0 24 26" aria-hidden="true"><path fill="#4285F4" d="M2 1.4 13.9 13 2 24.6c-.4-.3-.6-.8-.6-1.4V2.8c0-.6.2-1.1.6-1.4z"/><path fill="#34A853" d="M2 1.4c.5-.4 1.2-.5 1.9-.1l13.4 7.6-3.4 4.1z"/><path fill="#EA4335" d="M2 24.6l11.9-11.6 3.4 4.1-13.4 7.6c-.7.4-1.4.3-1.9-.1z"/><path fill="#FBBC04" d="m17.3 8.9 4 2.3c1.4.8 1.4 2.8 0 3.6l-4 2.3-3.4-4.1z"/></svg>
+          <span class="store-text"><small>COMING SOON ON</small><b>Google Play</b></span>
+        </span>
       </div>
       <div class="row">
         <span class="row-label">Support</span>
