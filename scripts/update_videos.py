@@ -7,6 +7,7 @@ Run locally or from .github/workflows/update-videos.yml.
 import json
 import re
 import sys
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -23,10 +24,16 @@ NS = {
 }
 
 
-def get(url):
+def get(url, tries=3):
     req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read().decode("utf-8", "replace")
+    for i in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return r.read().decode("utf-8", "replace")
+        except Exception:
+            if i == tries - 1:
+                raise
+            time.sleep(10 * (i + 1))
 
 
 def fetch_videos():
@@ -64,9 +71,15 @@ def main():
     channel = dict(old.get("channel", {}))
     channel.update({"handle": HANDLE, "url": f"https://www.youtube.com/{HANDLE}"})
     channel.update(fetch_totals())
-    data = {"channel": channel, "videos": fetch_videos()}
+    try:
+        videos = fetch_videos()
+    except Exception as exc:  # YouTube's feed 404s now and then; try again next run
+        print("feed unavailable, keeping the old file:", exc, file=sys.stderr)
+        return
+    data = {"channel": channel, "videos": videos}
     if not data["videos"]:
-        sys.exit("feed returned no videos; keeping the old file")
+        print("feed returned no videos; keeping the old file", file=sys.stderr)
+        return
     if {k: v for k, v in old.items() if k != "updated"} == data:
         print("no changes")
         return
